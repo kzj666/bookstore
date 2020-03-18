@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kk.dao.BookDao">
+
+    <resultMap type="com.kk.entity.Book" id="BookMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="bookname" column="bookname" jdbcType="VARCHAR"/>
+        <result property="pub" column="pub" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="date" column="date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BookMap">
+        select
+          id, bookname, pub, price, date
+        from bookstore.book
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BookMap">
+        select
+          id, bookname, pub, price, date
+        from bookstore.book
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BookMap">
+        select
+          id, bookname, pub, price, date
+        from bookstore.book
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="bookname != null and bookname != ''">
+                and bookname = #{bookname}
+            </if>
+            <if test="pub != null and pub != ''">
+                and pub = #{pub}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="date != null">
+                and date = #{date}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into bookstore.book(bookname, pub, price, date)
+        values (#{bookname}, #{pub}, #{price}, #{date})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update bookstore.book
+        <set>
+            <if test="bookname != null and bookname != ''">
+                bookname = #{bookname},
+            </if>
+            <if test="pub != null and pub != ''">
+                pub = #{pub},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from bookstore.book where id = #{id}
+    </delete>
+
+</mapper>

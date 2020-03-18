@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/style/admin.css}">
+    <link rel="stylesheet" th:href="@{/style/login.css}">
+    <script th:src="@{/layui/layui.js}"></script>
+
+</head>
+<body>
+
+<form th:action="tologin" th:method="POST">
+    <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+        <div class="layadmin-user-login-main">
+            <div class="layadmin-user-login-box layadmin-user-login-header">
+                <h2>KKBOOKSTORE</h2>
+                <p>KK书屋管理系统</p>
+                <div align="center"><p th:text="${msg}" style="color: red;"></p></div>
+            </div>
+            <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-username"
+                           for="LAY-user-login-username"></label>
+                    <input type="text" name="username" id="LAY-user-login-username" lay-verify="required"
+                           placeholder="用户名"
+                           class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-password"
+                           for="LAY-user-login-password"></label>
+                    <input type="password" name="password" id="LAY-user-login-password" lay-verify="required"
+                           placeholder="密码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <button th:type="sumbit" class="layui-btn layui-btn-fluid" lay-submit lay-filter="formDemo">登 录
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-trans layadmin-user-login-footer">
+
+        <p>© 2020 <a href="http://www.layui.com/" target="_blank">湖人总冠军</a></p>
+        <p>
+            <span><a href="https://blog.csdn.net/K_kzj_K" target="_blank">CSDN</a></span>
+            <span><a href="https://github.com/kzj666" target="_blank">GitHub</a></span>
+            <span><a href="https://blog.csdn.net/K_kzj_K/article/details/104878242" target="_blank">开发文档</a></span>
+        </p>
+    </div>
+</form>
+
+</body>
+</html>
