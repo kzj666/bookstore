@@ -22,7 +22,7 @@ public class ShiroConfig {
 
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager);
         /*
@@ -34,36 +34,56 @@ public class ShiroConfig {
         */
         //定义拦截链
         LinkedHashMap<String, String> filtermap = new LinkedHashMap<>();
+
+        // 配置不会被拦截的链接 顺序判断
         filtermap.put("/*/*.js", "anon");
         filtermap.put("/*/*.css", "anon");
+        filtermap.put("*.html", "anon");
         filtermap.put("/tologin", "anon");
-        filtermap.put("/login","anon");
-
+        filtermap.put("/login", "anon");
         filtermap.put("/index", "authc");
+        // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
+        filtermap.put("/logout", "logout");
+
+
+        //拦截所有请求，一般放最后面
+        filtermap.put("/**", "authc");
+
+
         bean.setFilterChainDefinitionMap(filtermap);
+
+
+        //设置登录要跳转的链接
+        //如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
+        bean.setLoginUrl("/login");
+        //设置成功后要跳转的链接
+        bean.setSuccessUrl("/index");
+        //设置未授权页面
+
 
         return bean;
 
     }
 
     @Bean
-    public DefaultWebSecurityManager securityManager(MyRealm myRealm){
+    public DefaultWebSecurityManager securityManager(MyRealm myRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myRealm);
-        return  securityManager;
+        return securityManager;
     }
 
     @Bean
-    public MyRealm myRealm(){
-        return  new MyRealm();
+    public MyRealm myRealm() {
+        return new MyRealm();
     }
 
     /**
      * 整合shiroDialect：用来整合shiro和thymeleaf
+     *
      * @return
      */
     @Bean
-    public ShiroDialect getShiroDialect(){
+    public ShiroDialect getShiroDialect() {
         return new ShiroDialect();
     }
 

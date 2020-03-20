@@ -13,7 +13,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BookMap">
         select
-          id, bookname, pub, price, date
+        id, bookname, pub, price, date
         from bookstore.book
         where id = #{id}
     </select>
@@ -21,7 +21,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BookMap">
         select
-          id, bookname, pub, price, date
+        id, bookname, pub, price, date
         from bookstore.book
         limit #{offset}, #{limit}
     </select>
@@ -29,7 +29,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BookMap">
         select
-          id, bookname, pub, price, date
+        id, bookname, pub, price, date
         from bookstore.book
         <where>
             <if test="id != null and id != ''">

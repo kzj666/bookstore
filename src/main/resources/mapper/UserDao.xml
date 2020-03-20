@@ -17,7 +17,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select
-          id, username, password, phone, email, sex, perm, role
+        id, username, password, phone, email, sex, perm, role
         from bookstore.user
         where id = #{id}
     </select>
@@ -25,7 +25,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
-          id, username, password, phone, email, sex, perm, role
+        id, username, password, phone, email, sex, perm, role
         from bookstore.user
         limit #{offset}, #{limit}
     </select>
@@ -33,7 +33,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
-          id, username, password, phone, email, sex, perm, role
+        id, username, password, phone, email, sex, perm, role
         from bookstore.user
         <where>
             <if test="id != null">

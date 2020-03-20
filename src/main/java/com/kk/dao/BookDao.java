@@ -3,6 +3,7 @@ package com.kk.dao;
 import com.kk.entity.Book;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public interface BookDao {
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Book> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);

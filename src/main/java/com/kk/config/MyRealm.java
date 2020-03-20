@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class MyRealm extends AuthorizingRealm {
 
-    private static final Logger logger =LoggerFactory.getLogger(MyRealm.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyRealm.class);
 
     @Autowired
     UserService userService;
@@ -37,7 +37,7 @@ public class MyRealm extends AuthorizingRealm {
         String username = userToken.getUsername();
         //验证用户名是否在数据库中存在
         User user = userService.queryByName(username);
-        if(user == null){
+        if (user == null) {
             System.out.println("出错了");
             return null;
         }

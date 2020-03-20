@@ -1,6 +1,8 @@
 package com.kk.service;
 
 import com.kk.entity.Book;
+import com.kk.entity.User;
+
 import java.util.List;
 
 /**
@@ -10,8 +12,6 @@ import java.util.List;
  * @since 2020-03-18 16:51:09
  */
 public interface BookService {
-
-
 
 
     /**
@@ -26,7 +26,7 @@ public interface BookService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Book> queryAllByLimit(int offset, int limit);

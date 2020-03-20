@@ -17,7 +17,16 @@ import java.util.List;
 public interface UserDao {
 
     /**
+     * 查询出所有记录
+     *
+     * @return 实例对象列表
+     */
+    @Select("select * from user")
+    List<User> queryList();
+
+    /**
      * 通过username查询单条数据
+     *
      * @param username 用户名
      * @return 实例对象
      */
@@ -36,7 +45,7 @@ public interface UserDao {
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<User> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
@@ -49,6 +58,7 @@ public interface UserDao {
      * @return 对象列表
      */
     List<User> queryAll(User user);
+
 
     /**
      * 新增数据

@@ -11,15 +11,15 @@ import java.io.Serializable;
  */
 public class Book implements Serializable {
     private static final long serialVersionUID = 415294357831211076L;
-    
+
     private String id;
-    
+
     private String bookname;
-    
+
     private String pub;
-    
+
     private Double price;
-    
+
     private Date date;
 
 

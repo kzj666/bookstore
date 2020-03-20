@@ -20,7 +20,18 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     /**
+     * 查询出全部记录
+     *
+     * @return 实例对象列表
+     */
+    @Override
+    public List<User> queryList() {
+        return userDao.queryList();
+    }
+
+    /**
      * 通过username查询单条数据
+     *
      * @param username 用户名
      * @return 实例对象
      */
@@ -44,7 +55,7 @@ public class UserServiceImpl implements UserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
