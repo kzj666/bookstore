@@ -59,6 +59,7 @@ public class ShiroConfig {
         //设置成功后要跳转的链接
         bean.setSuccessUrl("/index");
         //设置未授权页面
+        bean.setUnauthorizedUrl("/noauth");
 
 
         return bean;

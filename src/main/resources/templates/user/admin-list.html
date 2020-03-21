@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 
 <head>
     <meta charset="UTF-8">
@@ -52,9 +53,11 @@
                     </form>
                 </div>
                 <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除
+                    <button shiro:hasPermission="D" class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除
                     </button>
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i
+                    <!--这里的url有点奇怪，本来应该是请求user/to-admin-add从而跳到admin-add页面的，
+                    但是报404，发现是user/user/to-admin-add，去掉user，反而能正确加载页面，不明所以，尚未深究-->
+                    <button shiro:hasPermission="C" class="layui-btn" onclick="xadmin.open('添加用户','to-admin-add',600,540)"><i
                             class="layui-icon"></i>添加
                     </button>
                 </div>
@@ -86,22 +89,16 @@
                             <td th:text="${user.email}"></td>
                             <td th:text="${user.sex}"></td>
                             <td th:text="${user.role}"></td>
-                            <!--<td>1</td>-->
-                            <!--<td>admin</td>-->
-                            <!--<td>18925139194</td>-->
-                            <!--<td>113664000@qq.com</td>-->
-                            <!--<td>超级管理员</td>-->
-                            <!--<td>2017-01-01 11:11:42</td>-->
-                            <!--<td class="td-status">-->
-                                <!--<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>-->
                             <td class="td-manage">
                                 <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
                                     <i class="layui-icon">&#xe601;</i>
                                 </a>
-                                <a title="编辑" onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
+                                <a shiro:hasPermission="U" title="编辑" onclick="xadmin.open('编辑','')" th:href="@{'/user/to-admin-edit/'+${user.id}}">
+
                                     <i class="layui-icon">&#xe642;</i>
                                 </a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                <!--有Delete权限的用户才显示删除按钮-->
+                                <a shiro:hasPermission="D" title="删除" onclick="member_del(this,'要删除的id')">
                                     <i class="layui-icon">&#xe640;</i>
                                 </a>
                             </td>
@@ -111,7 +108,24 @@
                 </div>
                 <div class="layui-card-body ">
                     <div class="page">
-                        <div>
+                        <!--当前页数小于等于1时，上一页还是显示第一页的信息-->
+                        <div th:if="${page.pageNum} le 1">
+                            <a class="prev" th:href="@{/user/selectList(pn=1)}">&lt;&lt;</a>
+                            <a class="num" th:href="@{/user/selectList(pn=${page.pageNum})}">上一页</a>
+                            <span class="current" th:href="@{/user/selectList(pn=${page.pageNum})}" th:text="${page.pageNum}"></span>
+                            <a class="num" th:if="${page.pageNum} lt ${page.pages}" th:href="@{/user/selectList(pn=${page.pageNum+1})}">下一页</a>
+                            <a class="next" th:href="@{/user/selectList(pn=${page.pages})}">&gt;&gt;</a>
+                        </div>
+                        <!--当前页数大于等于最后一页时，点击下一页还是显示最尾页页的信息-->
+                        <div th:if="${page.pageNum} ge ${page.pages}">
+                            <a class="prev" th:href="@{/user/selectList(pn=1)}">&lt;&lt;</a>
+                            <a class="num" th:href="@{/user/selectList(pn=${page.pageNum-1})}">上一页</a>
+                            <span class="current" th:href="@{/user/selectList(pn=${page.pageNum})}" th:text="${page.pageNum}"></span>
+                            <a class="num" th:href="@{/user/selectList(pn=${page.pageNum})}">下一页</a>
+                            <a class="next" th:href="@{/user/selectList(pn=${page.pages})}">&gt;&gt;</a>
+                        </div>
+                        <!--非首尾页-->
+                        <div th:if="${page.pageNum} gt 1 and ${page.pageNum} lt ${page.pages}">
                             <a class="prev" th:href="@{/user/selectList(pn=1)}">&lt;&lt;</a>
                             <a class="num" th:href="@{/user/selectList(pn=${page.pageNum-1})}">上一页</a>
                             <span class="current" th:href="@{/user/selectList(pn=${page.pageNum})}" th:text="${page.pageNum}"></span>
@@ -171,6 +185,8 @@
             //发异步删除数据
             $(obj).parents("tr").remove();
             layer.msg('已删除!', {icon: 1, time: 1000});
+            //在确认删除后，发送删除请求
+            $(obj).href('user/deleteById/+ ${user.id}}');
         });
     }
 
