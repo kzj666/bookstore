@@ -1,7 +1,7 @@
 package com.kk.service;
 
 import com.kk.entity.Book;
-import com.kk.entity.User;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -9,9 +9,23 @@ import java.util.List;
  * (Book)表服务接口
  *
  * @author makejava
- * @since 2020-03-18 16:51:09
+ * @since 2020-03-22 21:07:20
  */
 public interface BookService {
+
+
+    /**
+     * 查询所有书籍
+     * @return 返回书籍列表
+     */
+    List<Book> queryList();
+
+    /**
+     * 根据类别查书籍
+     * @param kind 书籍类别
+     * @return 返回书籍列表
+     */
+    List<Book> queryByKind(String kind);
 
 
     /**
@@ -26,7 +40,7 @@ public interface BookService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit  查询条数
+     * @param limit 查询条数
      * @return 对象列表
      */
     List<Book> queryAllByLimit(int offset, int limit);

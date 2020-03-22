@@ -6,7 +6,7 @@
 */
 .login-bg {
     /*background: #eeeeee url() 0 0 no-repeat;*/
-    background: url(../images/bg.png) no-repeat center;
+    background: url("../images/bg.png") no-repeat center;
     background-size: cover;
     overflow: hidden;
 }
@@ -94,7 +94,7 @@
 }
 
 .login hr {
-    background: #fff url(../images/bg.png) 0 0 no-repeat;
+    background: #fff url("../images/bg.png") 0 0 no-repeat;
 }
 
 .login hr.hr15 {

@@ -1,8 +1,8 @@
 package com.kk.dao;
 
 import com.kk.entity.Book;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -10,10 +10,23 @@ import java.util.List;
  * (Book)表数据库访问层
  *
  * @author makejava
- * @since 2020-03-18 16:51:09
+ * @since 2020-03-22 21:07:19
  */
-@Mapper
 public interface BookDao {
+
+    /**
+     * 查询所有书籍
+     * @return 返回书籍列表
+     */
+    @Select("select * from book")
+    List<Book> queryList();
+
+    /**
+     * 根据类别查书籍
+     * @param kind 书籍类别
+     * @return 返回书籍列表
+     */
+    List<Book> queryByKind(String kind);
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +40,7 @@ public interface BookDao {
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit  查询条数
+     * @param limit 查询条数
      * @return 对象列表
      */
     List<Book> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);

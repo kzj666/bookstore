@@ -64,16 +64,16 @@
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
-                        <tr>
+                        <tr >
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
-                            <th>ID</th>
-                            <th>登录名</th>
-                            <th>手机</th>
-                            <th>邮箱</th>
-                            <th>性别</th>
-                            <th>角色</th>
+                            <th style="text-align: center" width="16%">ID</th>
+                            <th width="16%">登录名</th>
+                            <th width="16%">手机</th>
+                            <th width="16%">邮箱</th>
+                            <th width="16%">性别</th>
+                            <th width="16%">角色</th>
                             <!--<th>加入时间</th>-->
                             <!--<th>状态</th>-->
                             <th>操作</th>
@@ -90,15 +90,16 @@
                             <td th:text="${user.sex}"></td>
                             <td th:text="${user.role}"></td>
                             <td class="td-manage">
-                                <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                                    <i class="layui-icon">&#xe601;</i>
-                                </a>
-                                <a shiro:hasPermission="U" title="编辑" onclick="xadmin.open('编辑','')" th:href="@{'/user/to-admin-edit/'+${user.id}}">
-
+                                <!--<a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">-->
+                                    <!--<i class="layui-icon">&#xe601;</i></a>-->
+                                <!--改写xadmin.open()方法，传this过去，就能根据id查询然后回显数据,注意不要重名-->
+                                <a shiro:hasPermission="A" title="编辑" th:value="${user.id}" onclick="xadmin.open2('编辑','/user/to-admin-edit/','','',false,this)" href="javascript:;">
                                     <i class="layui-icon">&#xe642;</i>
                                 </a>
+                                <span>&nbsp;&nbsp;&nbsp;</span>
                                 <!--有Delete权限的用户才显示删除按钮-->
-                                <a shiro:hasPermission="D" title="删除" onclick="member_del(this,'要删除的id')">
+                                <!--onclick，将本标签元素this传入-->
+                                <a shiro:hasPermission="D" title="删除" th:value="${user.id}" onclick=member_del(this)>
                                     <i class="layui-icon">&#xe640;</i>
                                 </a>
                             </td>
@@ -117,7 +118,7 @@
                             <a class="next" th:href="@{/user/selectList(pn=${page.pages})}">&gt;&gt;</a>
                         </div>
                         <!--当前页数大于等于最后一页时，点击下一页还是显示最尾页页的信息-->
-                        <div th:if="${page.pageNum} ge ${page.pages}">
+                        <div th:if="${page.pageNum} != 1 and ${page.pageNum} ge ${page.pages}">
                             <a class="prev" th:href="@{/user/selectList(pn=1)}">&lt;&lt;</a>
                             <a class="num" th:href="@{/user/selectList(pn=${page.pageNum-1})}">上一页</a>
                             <span class="current" th:href="@{/user/selectList(pn=${page.pageNum})}" th:text="${page.pageNum}"></span>
@@ -180,13 +181,20 @@
     }
 
     /*用户-删除*/
-    function member_del(obj, id) {
+    function member_del(obj) {
+        //拿到元素的value（即id），传给异步删除的请求
+        var id = obj.getAttribute('value');
+        console.log("///////////////////////////////////////////////"+id);
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
             $(obj).parents("tr").remove();
-            layer.msg('已删除!', {icon: 1, time: 1000});
             //在确认删除后，发送删除请求
-            $(obj).href('user/deleteById/+ ${user.id}}');
+            $.ajax({
+                type: 'GET',
+                url: "deleteById",
+                data: {'id':id},
+            });
+            layer.msg('已删除!', {icon: 1, time: 1000});
         });
     }
 

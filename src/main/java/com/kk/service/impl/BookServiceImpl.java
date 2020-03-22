@@ -12,12 +12,31 @@ import java.util.List;
  * (Book)表服务实现类
  *
  * @author makejava
- * @since 2020-03-18 16:51:10
+ * @since 2020-03-22 21:07:20
  */
 @Service("bookService")
 public class BookServiceImpl implements BookService {
     @Resource
     private BookDao bookDao;
+
+    /**
+     * 查询所有书籍
+     * @return 返回书籍列表
+     */
+    @Override
+    public List<Book> queryList() {
+        return null;
+    }
+
+    /**
+     * 根据类别查书籍
+     * @param kind 书籍类别
+     * @return 返回书籍列表
+     */
+    @Override
+    public List<Book> queryByKind(String kind) {
+        return bookDao.queryByKind(kind);
+    }
 
     /**
      * 通过ID查询单条数据
@@ -34,7 +53,7 @@ public class BookServiceImpl implements BookService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit  查询条数
+     * @param limit 查询条数
      * @return 对象列表
      */
     @Override

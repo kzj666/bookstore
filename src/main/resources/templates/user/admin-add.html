@@ -153,18 +153,11 @@
                 var repass = data.field.repass;
                 $.ajax({
                     type: 'post',
-                    //这里也居然只写一个add就可以发送请求了，也不能加/user，连/都不能加，也是原因不明，佛了
-                    url: "add",
+                    url: "/user/add",
                     data: {'username': username, 'password': pass, 'phone': phone, 'email': email, 'sex':sex, 'perm':perm, 'role': role},
+                    //success没进到里面去，以后再深究
                     success: function (res) {
                         if (res > 0) {
-                            // layer.alert("增加成功", {
-                            //         icon: 6
-                            //     },
-                            //     //关闭当前frame
-                            //     xadmin.close();
-                            // // 可以对父窗口进行刷新
-                            // xadmin.father_reload();
                             console.log("=====================================================================");
                         }
                     }

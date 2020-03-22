@@ -66,9 +66,10 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"><span class="x-red">*</span>性别</label>
+                <!--单选框的回显，使用th:field，会自动选择-->
                 <div class="layui-input-block">
-                    <input th:checked="${edituser.sex == 'm' ?  'checked' : ''}" th:value="m" type="radio" name="sex" lay-skin="primary" title="男">
-                    <input th:value="f" type="radio" name="sex" lay-skin="primary" title="女">
+                    <input th:field="${edituser.sex}" th:value="m" type="radio" name="sex" lay-skin="primary" title="男">
+                    <input th:field="${edituser.sex}"th:value="f" type="radio" name="sex" lay-skin="primary" title="女">
                 </div>
             </div>
             <div shiro:hasPermission="A" class="layui-form-item">
@@ -85,10 +86,11 @@
             </div>
             <div shiro:hasPermission="A" class="layui-form-item">
                 <label class="layui-form-label"><span class="x-red">*</span>角色</label>
+                <!--单选框的回显，使用th:field，会自动选择-->
                 <div class="layui-input-block">
-                    <input th:value="guest" type="radio" name="role" lay-skin="primary" title="游客" checked="">
-                    <input th:value="adminstrator" type="radio" name="role" lay-skin="primary" title="普通管理员">
-                    <input th:value="super-administrator" type="radio" name="role" lay-skin="primary" title="超级管理员">
+                    <input th:field="${edituser.role}" th:value ="guest" type="radio" name="role" lay-skin="primary" title="游客" checked="">
+                    <input th:field="${edituser.role}" th:value="adminstrator" type="radio" name="role" lay-skin="primary" title="普通管理员">
+                    <input th:field="${edituser.role}" th:value="super-administrator" type="radio" name="role" lay-skin="primary" title="超级管理员">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -96,7 +98,7 @@
                     <span class="x-red">*</span>密码
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
+                    <input th:value="${edituser.password}" type="password" id="L_pass" name="pass" required="" lay-verify="pass"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -108,7 +110,7 @@
                     <span class="x-red">*</span>确认密码
                 </label>
                 <div class="layui-input-inline">
-                    <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
+                    <input th:value="${edituser.password}" type="password" id="L_repass" name="repass" required="" lay-verify="repass"
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -156,11 +158,9 @@
                 var sex = data.field.sex;
                 var perm = data.field.perm;
                 var role = data.field.role;
-                var repass = data.field.repass;
                 $.ajax({
                     type: 'post',
-                    //这里也居然只写一个update就可以发送请求了，前面也不能加/user，连/都不能加，也是原因不明，佛了
-                    url: "",
+                    url: "/user/update",
                     data: {
                         'id': id,
                         'username': username,
@@ -170,11 +170,6 @@
                         'sex': sex,
                         'perm': perm,
                         'role': role
-                    },
-                    success: function (res) {
-                        if (res > 0) {
-                            console.log("=====================================================================");
-                        }
                     }
                 });
 
