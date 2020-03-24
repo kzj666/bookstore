@@ -92,12 +92,14 @@ public class BookController {
 
 
     @GetMapping("toSearchList/{kind}")
-    public String toSearchList(@PathVariable("kind") String kind, Model model){
+    public String toSearchList(@PathVariable("kind") String kind, Model model,@RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "5") int size){
         //去掉空格
         String skind = StringUtils.deleteWhitespace(kind);
-        List<Book> books = bookService.queryByKind(skind);
-        model.addAttribute("books",books);
-        return "book/book-search";
+        PageHelper.startPage(pn, size);
+        List<Book> books = bookService.queryByKind(kind);
+        PageInfo<Book> page = new PageInfo<>(books);
+        model.addAttribute("page",page);
+        return "book/book-list";
     }
 
     /**

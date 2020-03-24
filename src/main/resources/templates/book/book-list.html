@@ -41,7 +41,7 @@
                         <input id="kind" type="text" name="kind" placeholder="输入类别查询" autocomplete="off"
                                class="layui-input"></div>
                     <div class="layui-input-inline layui-show-xs-block">
-                        <button class="layui-btn" onclick="xadmin.open3('搜索','/book/toSearchList/')">
+                        <button class="layui-btn" onclick="kindsearch()">
                             <i class="layui-icon">&#xe615;</i></button>
                     </div>
                     <!--</form>-->
@@ -152,16 +152,6 @@
             elem: '#end' //指定元素
         });
 
-        // //监听提交
-        // form.on('submit(search)', function (data) {
-        //     var kind = data.field.kind;
-        //     $.ajax({
-        //         type: 'post',
-        //         url: "/book/selectKindList",
-        //         data: {'kind': kind}
-        //     });
-        // });
-
     });
 
 
@@ -230,6 +220,12 @@ function delAll(argument) {
             });
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
+}
+
+
+function kindsearch () {
+    var kind = document.getElementById('kind').value;
+    window.location.href="/book/toSearchList/"+kind
 }
 
 
