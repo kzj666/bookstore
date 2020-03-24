@@ -29,7 +29,7 @@ public class BookController {
 
 
     @GetMapping("selectList")
-    public String selectList(Model model, @RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "5") int size){
+    public String selectList(Model model, @RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "10") int size){
         PageHelper.startPage(pn, size);
         List<Book> books = bookService.queryList();
         PageInfo<Book> page = new PageInfo<>(books);

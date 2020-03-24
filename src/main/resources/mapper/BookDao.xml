@@ -15,24 +15,26 @@
     <!--根据类别查书籍-->
     <select id="queryByKind" resultMap="BookMap">
         select
-               id, bookname, pub, price, date, count, kind
+        id, bookname, pub, price, date, count, kind
         from bookstore.book
-        where kind= #{kind}
+        <where>
+            <if test=" kind != '' and kind != null">
+                and kind= #{kind}
+            </if>
+        </where>
     </select>
 
 
     <!--查询单个-->
     <select id="queryById" resultMap="BookMap">
-        select
-          id, bookname, pub, price, date, count, kind
+        select id, bookname, pub, price, date, count, kind
         from bookstore.book
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BookMap">
-        select
-          id, bookname, pub, price, date, count, kind
+        select id, bookname, pub, price, date, count, kind
         from bookstore.book
         limit #{offset}, #{limit}
     </select>
@@ -40,7 +42,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BookMap">
         select
-          id, bookname, pub, price, date, count, kind
+        id, bookname, pub, price, date, count, kind
         from bookstore.book
         <where>
             <if test="id != null">
@@ -69,7 +71,7 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into bookstore.book(bookname, pub, price, date, count, kind)
+        insert into bookstore.book (bookname, pub, price, date, count, kind)
         values (#{bookname}, #{pub}, #{price}, #{date}, #{count}, #{kind})
     </insert>
 
@@ -101,7 +103,9 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from bookstore.book where id = #{id}
+        delete
+        from bookstore.book
+        where id = #{id}
     </delete>
 
 </mapper>
