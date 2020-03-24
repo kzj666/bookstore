@@ -184,14 +184,14 @@
     function member_del(obj) {
         //拿到元素的value（即id），传给异步删除的请求
         var id = obj.getAttribute('value');
-        console.log("///////////////////////////////////////////////"+id);
+        // console.log("///////////////////////////////////////////////"+id);
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
             $(obj).parents("tr").remove();
             //在确认删除后，发送删除请求
             $.ajax({
                 type: 'GET',
-                url: "deleteById",
+                url: "/user/deleteById",
                 data: {'id':id},
             });
             layer.msg('已删除!', {icon: 1, time: 1000});

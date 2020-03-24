@@ -18,7 +18,7 @@ server:
     min-spare-threads: 25
     max-threads: 300
     accept-count: 200
-  port: 8080
+  port: 9090
 
 
 

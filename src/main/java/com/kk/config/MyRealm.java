@@ -36,9 +36,9 @@ public class MyRealm extends AuthorizingRealm {
         //拿到登录对象的权限，用-分离出每一个权限,放入数组
         String[] perm = user.getPerm().split("-");
         //输出来看一下
-        for (String s : perm) {
-            System.out.println(s);
-        }
+//        for (String s : perm) {
+//            System.out.println(s);
+//        }
         //将整个perm数组转成集合放入HashSet中
         HashSet<String> set = new HashSet<>(Arrays.asList(perm));
 
@@ -56,7 +56,7 @@ public class MyRealm extends AuthorizingRealm {
         //验证用户名是否在数据库中存在
         User user = userService.queryByName(username);
         if (user == null) {
-            System.out.println("出错了");
+//            System.out.println("出错了");
             return null;
         }
         return new SimpleAuthenticationInfo(user, user.getPassword(), getName());

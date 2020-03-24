@@ -26,16 +26,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public User selectOne(Integer id) {
-        return this.userService.queryById(id);
-    }
 
     /**
      * 点击[管理员列表]，查出所有管理员列表，并跳转到admin-list页面显示，
@@ -106,5 +96,18 @@ public class UserController {
         userService.update(user);
         return "redirect:/user/selectList";
     }
+
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("selectOne")
+    public User selectOne(Integer id) {
+        return this.userService.queryById(id);
+    }
+
 
 }

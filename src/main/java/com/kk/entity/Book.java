@@ -1,5 +1,7 @@
 package com.kk.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -7,12 +9,13 @@ import java.io.Serializable;
  * (Book)实体类
  *
  * @author makejava
- * @since 2020-03-22 21:07:18
+ * @since 2020-03-22 23:36:10
  */
+@Data
 public class Book implements Serializable {
-    private static final long serialVersionUID = -18942594809629581L;
+    private static final long serialVersionUID = -37395183798253996L;
     
-    private String id;
+    private Integer id;
     
     private String bookname;
     
@@ -27,11 +30,11 @@ public class Book implements Serializable {
     private String kind;
 
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

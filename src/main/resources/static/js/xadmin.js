@@ -102,7 +102,7 @@
 	}
 
 
-	//------------------------------------------------------------------------------------
+	//---------------------------------------自定义的open2功能---------------------------------------------
     /**
      * [open 打开弹出层]
      * @param  {[type]}  title [弹出层标题]
@@ -142,7 +142,53 @@
             layer.full(index);
         }
     }
+
 	//------------------------------------------------------------------------------------
+//---------------------------------------自定义的open3功能---------------------------------------------
+    /**
+     * [open 打开弹出层]
+     * @param  {[type]}  title [弹出层标题]
+     * @param  {[type]}  url   [弹出层地址]
+     * @param  {[type]}  w     [宽]
+     * @param  {[type]}  h     [高]
+     * @param  {Boolean} full  [全屏]
+     * @return {[type]}        [description]
+     */
+    Xadmin.prototype.open3 = function (title,url,w,h,full) {
+        var kind = document.getElementById('kind').value;
+        console.log("---------------------------------------"+kind);
+        if (title == null || title == '') {
+            var title=false;
+        };
+        if (url == null || url == '') {
+            var url="404.html";
+        }else {
+            var url = url+kind;
+        };
+        if (w == null || w == '') {
+            var w=($(window).width()*0.5);
+        };
+        if (h == null || h == '') {
+            var h=($(window).height() - 150);
+        };
+        var index = layer.open({
+            type: 2,
+            area: [w+'px', h +'px'],
+            fix: false, //不固定
+            maxmin: true,
+            shadeClose: true,
+            shade:0.4,
+            title: title,
+            content: url
+        });
+        if(full){
+            layer.full(index);
+        }
+    }
+    //------------------------------------------------------------------------------------
+
+
+
 
 
 	/**

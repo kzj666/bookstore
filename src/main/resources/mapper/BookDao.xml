@@ -3,7 +3,7 @@
 <mapper namespace="com.kk.dao.BookDao">
 
     <resultMap type="com.kk.entity.Book" id="BookMap">
-        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="bookname" column="bookname" jdbcType="VARCHAR"/>
         <result property="pub" column="pub" jdbcType="VARCHAR"/>
         <result property="price" column="price" jdbcType="NUMERIC"/>
@@ -19,6 +19,7 @@
         from bookstore.book
         where kind= #{kind}
     </select>
+
 
     <!--查询单个-->
     <select id="queryById" resultMap="BookMap">
@@ -42,7 +43,7 @@
           id, bookname, pub, price, date, count, kind
         from bookstore.book
         <where>
-            <if test="id != null and id != ''">
+            <if test="id != null">
                 and id = #{id}
             </if>
             <if test="bookname != null and bookname != ''">

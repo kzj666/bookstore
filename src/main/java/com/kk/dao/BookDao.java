@@ -10,7 +10,7 @@ import java.util.List;
  * (Book)表数据库访问层
  *
  * @author makejava
- * @since 2020-03-22 21:07:19
+ * @since 2020-03-22 23:36:11
  */
 public interface BookDao {
 
@@ -34,7 +34,7 @@ public interface BookDao {
      * @param id 主键
      * @return 实例对象
      */
-    Book queryById(String id);
+    Book queryById(Integer id);
 
     /**
      * 查询指定行数据
@@ -76,6 +76,6 @@ public interface BookDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(String id);
+    int deleteById(Integer id);
 
 }

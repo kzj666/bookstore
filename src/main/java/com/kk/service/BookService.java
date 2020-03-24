@@ -1,15 +1,13 @@
 package com.kk.service;
 
 import com.kk.entity.Book;
-import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
 
 /**
  * (Book)表服务接口
  *
  * @author makejava
- * @since 2020-03-22 21:07:20
+ * @since 2020-03-22 23:36:11
  */
 public interface BookService {
 
@@ -27,14 +25,13 @@ public interface BookService {
      */
     List<Book> queryByKind(String kind);
 
-
     /**
      * 通过ID查询单条数据
      *
      * @param id 主键
      * @return 实例对象
      */
-    Book queryById(String id);
+    Book queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -67,6 +64,6 @@ public interface BookService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    boolean deleteById(Integer id);
 
 }
