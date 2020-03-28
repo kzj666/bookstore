@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-03-22 23:36:10
  */
-@Data
+//@Data
 public class Book implements Serializable {
     private static final long serialVersionUID = -37395183798253996L;
     

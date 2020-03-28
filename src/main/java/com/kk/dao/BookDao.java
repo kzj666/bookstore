@@ -26,7 +26,7 @@ public interface BookDao {
      * @param kind 书籍类别
      * @return 返回书籍列表
      */
-    List<Book> queryByKind(String kind);
+    List<Book> queryByKind(@Param("kind") String kind);
 
     /**
      * 通过ID查询单条数据
