@@ -19,6 +19,19 @@
     </properties>
 
     <dependencies>
+
+        <!--&lt;!&ndash;引入MyBatisPlus&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus</artifactId>-->
+            <!--<version>3.1.1</version>-->
+        <!--</dependency>-->
+        <!--commons-lang-->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
         <!--shiro-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -74,6 +87,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.31</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
