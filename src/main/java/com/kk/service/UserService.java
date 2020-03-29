@@ -29,6 +29,13 @@ public interface UserService {
     User queryByName(String username);
 
     /**
+     * 用于根据用户名查询用户列表
+     * @param username
+     * @return
+     */
+    List<User> searchNameList(@Param("username") String username);
+
+    /**
      * 通过ID查询单条数据
      *
      * @param id 主键

@@ -215,9 +215,16 @@
         });
     }
 
-    function usernamesearch () {
+    function usernamesearch() {
         var username = document.getElementById('username').value;
-        window.location.href="/user/usernameSearch/"+username;
+        //去掉字符前后的空格
+        var uname = $.trim(username);
+        // alert(uname);
+        if (uname .length == 0) {
+            alert("请输入用户名");
+        } else {
+            window.location.href = "/user/usernameSearch/" + uname;
+        }
     }
 </script>
 

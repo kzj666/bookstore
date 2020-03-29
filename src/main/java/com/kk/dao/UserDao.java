@@ -31,8 +31,15 @@ public interface UserDao {
      * @param username 用户名
      * @return 实例对象
      */
-    @Select("select * from user where username = #{username}")
     User queryByName(@Param("username") String username);
+
+    /**
+     * 用于根据用户名查询用户列表
+     * @param username
+     * @return
+     */
+    @Select("select * from user where username = #{username}")
+    List<User> searchNameList(@Param("username") String username);
 
     /**
      * 通过ID查询单条数据

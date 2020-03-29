@@ -13,6 +13,19 @@
         <result property="role" column="role" jdbcType="VARCHAR"/>
     </resultMap>
 
+
+    <!--根据用户名查询-->
+    <select id="queryByName" resultMap="UserMap">
+        select
+               id, username, password, phone, email, sex, perm, role
+        from bookstore.user
+        <where>
+            <if test=" username != '' and username != null">
+                and username = #{username}
+            </if>
+        </where>
+    </select>
+
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select

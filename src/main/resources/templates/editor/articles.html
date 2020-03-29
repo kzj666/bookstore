@@ -54,7 +54,7 @@
                             <td class="td-manage">
                                 <!--<a title="查看" th:href="@{'/article/'+${article.id}}">-->
                                 <a title="查看" th:value="${article.id}" onclick="xadmin.open2('查看文章','/article/',1200,800,null,this)">
-                                    <i class="layui-icon">&#xe6e6;</i>
+                                    <i class="layui-icon">&#xe63c;</i>
                                 </a>
                                 <span>&nbsp;&nbsp;&nbsp;</span>
                                 <a shiro:hasPermission="D" title="删除" th:value="${article.id}" onclick=member_del(this)>

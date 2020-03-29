@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kk.entity.User;
 import com.kk.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -120,13 +123,12 @@ public class UserController {
      */
     @GetMapping("usernameSearch/{username}")
     public String usernameSearch(@PathVariable("username") String username, Model model, @RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "5") int size){
-        this.userService.queryByName(username);
+        //去掉空格
+        String name = StringUtils.deleteWhitespace(username);
         PageHelper.startPage(pn, size);
         //根据name查到的username只有一个
-        User user = userService.queryByName(username);
-        //将user加入到userlist中
-        List<User> userlist = Arrays.asList(user);
-        PageInfo<User> page = new PageInfo<>(userlist);
+        List<User> userList = userService.searchNameList(name);
+        PageInfo<User> page = new PageInfo<>(userList);
         model.addAttribute("page",page);
         return "user/admin-list";
     }

@@ -220,9 +220,15 @@ function delAll(argument) {
 }
 
 
-function kindsearch () {
+function kindsearch() {
     var kind = document.getElementById('kind').value;
-    window.location.href="/book/toSearchList/"+kind
+    //去掉字符前后的空格
+    var kin = $.trim(kind);
+    if (kin.length == 0) {
+        alert("请输入类别");
+    } else {
+        window.location.href = "/book/toSearchList/" + kin;
+    }
 }
 
 

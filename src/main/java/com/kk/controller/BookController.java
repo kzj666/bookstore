@@ -90,7 +90,6 @@ public class BookController {
         return "redirect:/book/selectList";
     }
 
-
     @GetMapping("toSearchList/{kind}")
     public String toSearchList(@PathVariable("kind") String kind, Model model,@RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "5") int size){
         //去掉空格
@@ -101,6 +100,7 @@ public class BookController {
         model.addAttribute("page",page);
         return "book/book-list";
     }
+
 
     /**
      * 通过主键查询单条数据
