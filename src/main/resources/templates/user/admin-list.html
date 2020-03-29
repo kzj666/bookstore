@@ -62,9 +62,9 @@
                 <div class="layui-card-header">
                     <!--这里的url有点奇怪，本来应该是请求user/to-admin-add从而跳到admin-add页面的，
                     但是报404，发现是user/user/to-admin-add，去掉user，反而能正确加载页面，不明所以，尚未深究-->
-                    <button shiro:hasPermission="C" class="layui-btn" onclick="xadmin.open('添加用户','/user/to-admin-add',600,540)"><i
-                            class="layui-icon"></i>添加
+                    <button shiro:hasPermission="C" class="layui-btn" onclick="xadmin.open('添加用户','/user/to-admin-add',600,540)"><i class="layui-icon"></i>添加
                     </button>
+                    <button class="layui-btn layui-btn-normal" onclick="backtoUserlist()">用户列表</button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -226,6 +226,12 @@
             window.location.href = "/user/usernameSearch/" + uname;
         }
     }
+
+    function backtoUserlist() {
+        window.location.href = "/user/selectList";
+    }
+
+
 </script>
 
 

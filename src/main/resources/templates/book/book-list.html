@@ -44,6 +44,7 @@
                         <button class="layui-btn" onclick="kindsearch()">
                             <i class="layui-icon">&#xe615;</i></button>
                     </div>
+
                     <!--</form>-->
                 </div>
                 <div class="layui-card-header">
@@ -51,6 +52,8 @@
                             onclick="xadmin.open('添加书籍','/book/to-book-add',600,460)">
                         <i class="layui-icon"></i>添加
                     </button>
+                    <button class="layui-btn layui-btn-normal" onclick="backtoBooklist()">用户列表</button>
+
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -230,7 +233,9 @@ function kindsearch() {
         window.location.href = "/book/toSearchList/" + kin;
     }
 }
-
+function backtoBooklist() {
+    window.location.href = "/book/selectList";
+}
 
 </script>
 
