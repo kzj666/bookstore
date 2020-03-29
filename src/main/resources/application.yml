@@ -21,7 +21,7 @@ server:
     min-spare-threads: 25
     max-threads: 300
     accept-count: 200
-  port: 9001
+  port: 9000
 
 
 mybatis:
@@ -43,7 +43,6 @@ spring:
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
     #最大连接个数

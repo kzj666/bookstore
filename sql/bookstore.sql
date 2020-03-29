@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 80018
+Source Server         : 阿里云数据库
+Source Server Version : 50729
 Source Host           : localhost:3306
 Source Database       : bookstore
 
 Target Server Type    : MYSQL
-Target Server Version : 80018
+Target Server Version : 50729
 File Encoding         : 65001
 
-Date: 2020-03-28 23:34:58
+Date: 2020-03-29 18:09:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -114,12 +114,12 @@ INSERT INTO `user` VALUES ('2', 'zz', '123456', '13531174771', '2319680237@qq.co
 INSERT INTO `user` VALUES ('3', 'jj', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
 INSERT INTO `user` VALUES ('4', 'aa', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
 INSERT INTO `user` VALUES ('5', 'bb', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
+INSERT INTO `user` VALUES ('6', 'cc', '123456', '13531174771', '13531174771@qq.com', 'm', 'R', 'guest');
+INSERT INTO `user` VALUES ('7', 'dd', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
 INSERT INTO `user` VALUES ('8', 'ee', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
 INSERT INTO `user` VALUES ('9', 'ff', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
 INSERT INTO `user` VALUES ('10', 'gg', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
-INSERT INTO `user` VALUES ('12', 'ii', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
-INSERT INTO `user` VALUES ('14', 'mm', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
-INSERT INTO `user` VALUES ('15', 'nn', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
-INSERT INTO `user` VALUES ('16', 'oo', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
-INSERT INTO `user` VALUES ('17', 'pp', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
-INSERT INTO `user` VALUES ('26', 'rr', '123456', '13531174771', '13531174771@qq.com', 'm', 'R', 'guest');
+INSERT INTO `user` VALUES ('11', 'ii', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
+INSERT INTO `user` VALUES ('12', 'mm', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
+INSERT INTO `user` VALUES ('13', 'nn', '123456', '13531174771', '2319680237@qq.com', 'm', 'R', 'guest');
+INSERT INTO `user` VALUES ('14', 'oo', '123456', '13531174771', '2319680237@qq.com', 'f', 'R', 'guest');
