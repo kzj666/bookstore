@@ -21,7 +21,7 @@ server:
     min-spare-threads: 25
     max-threads: 300
     accept-count: 200
-  port: 9000
+  port: 9001
 
 
 mybatis:

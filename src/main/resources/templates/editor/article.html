@@ -10,7 +10,7 @@
 <div>
     <!--文章头部信息：标题，作者，最后更新日期，导航-->
     <h2 style="margin: auto 0" th:text="${article.title}"></h2>
-    <h3 th:text=" '作者:'+ ${article.author}"></h3>
+    <h3 th:text=" '作者：'+ ${article.author}"></h3>
     <!--文章主体内容-->
     <div id="doc-content" style="width: 80%">
         <textarea style="display:none;" placeholder="markdown" th:text="${article.content}"></textarea>

@@ -71,5 +71,9 @@ public class LoginController {
         return "noauth";
     }
 
+    @GetMapping("welcome")
+    public String welcome(){
+        return "welcome";
+    }
 
 }
