@@ -35,29 +35,34 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-inline layui-show-xs-block">
-                            <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入用户名" autocomplete="off"
-                                   class="layui-input">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
-                                    class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
+                    <!--<form class="layui-form layui-col-space5">-->
+                        <!--<div class="layui-inline layui-show-xs-block">-->
+                            <!--<input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start">-->
+                        <!--</div>-->
+                        <!--<div class="layui-inline layui-show-xs-block">-->
+                            <!--<input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end">-->
+                        <!--</div>-->
+                        <!--<div class="layui-inline layui-show-xs-block">-->
+                            <!--<input type="text" name="username" placeholder="请输入用户名" autocomplete="off"-->
+                                   <!--class="layui-input">-->
+                        <!--</div>-->
+                        <!--<div class="layui-inline layui-show-xs-block">-->
+                            <!--<button class="layui-btn" lay-submit="" lay-filter="sreach"><i-->
+                                    <!--class="layui-icon">&#xe615;</i></button>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                    <div class="layui-input-inline layui-show-xs-block">
+                        <input id="username" type="text" name="username" placeholder="输入用户名查询" autocomplete="off"
+                               class="layui-input"></div>
+                    <div class="layui-input-inline layui-show-xs-block">
+                        <button class="layui-btn" onclick="usernamesearch()">
+                            <i class="layui-icon">&#xe615;</i></button>
+                    </div>
                 </div>
                 <div class="layui-card-header">
-                    <button shiro:hasPermission="D" class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除
-                    </button>
                     <!--这里的url有点奇怪，本来应该是请求user/to-admin-add从而跳到admin-add页面的，
                     但是报404，发现是user/user/to-admin-add，去掉user，反而能正确加载页面，不明所以，尚未深究-->
-                    <button shiro:hasPermission="C" class="layui-btn" onclick="xadmin.open('添加用户','to-admin-add',600,540)"><i
+                    <button shiro:hasPermission="C" class="layui-btn" onclick="xadmin.open('添加用户','/user/to-admin-add',600,540)"><i
                             class="layui-icon"></i>添加
                     </button>
                 </div>
@@ -209,7 +214,16 @@
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
     }
+
+    function usernamesearch () {
+        var username = document.getElementById('username').value;
+        window.location.href="/user/usernameSearch/"+username;
+    }
 </script>
+
+
+
+
 <script>var _hmt = _hmt || [];
 (function () {
     var hm = document.createElement("script");

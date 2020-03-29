@@ -4,11 +4,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kk.entity.User;
 import com.kk.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,7 +39,7 @@ public class UserController {
      * @return
      */
     @GetMapping("selectList")
-    public String selectList(Model model, @RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "5") int size) {
+    public String selectList(Model model, @RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "10") int size) {
         PageHelper.startPage(pn, size);
         List<User> users = userService.queryList();
         PageInfo<User> page = new PageInfo<>(users);
@@ -110,4 +113,37 @@ public class UserController {
     }
 
 
+    /**
+     * 根据用户名查询
+     * @param username
+     * @return
+     */
+    @GetMapping("usernameSearch/{username}")
+    public String usernameSearch(@PathVariable("username") String username, Model model, @RequestParam(value = "pn", defaultValue = "1") int pn, @RequestParam(value = "size", defaultValue = "5") int size){
+        this.userService.queryByName(username);
+        PageHelper.startPage(pn, size);
+        //根据name查到的username只有一个
+        User user = userService.queryByName(username);
+        //将user加入到userlist中
+        List<User> userlist = Arrays.asList(user);
+        PageInfo<User> page = new PageInfo<>(userlist);
+        model.addAttribute("page",page);
+        return "user/admin-list";
+    }
+
+    /**
+     * 用于添加用户时，异步检测用户名是否已存在
+     * @param username
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("checkexist/{username}")
+    public String checkexist(@PathVariable("username") String username){
+        User user = userService.queryByName(username);
+        if(user != null){
+            return "exist";
+        }else {
+            return "noexist";
+        }
+    }
 }

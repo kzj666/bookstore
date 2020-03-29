@@ -13,7 +13,6 @@
         <result property="role" column="role" jdbcType="VARCHAR"/>
     </resultMap>
 
-
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select

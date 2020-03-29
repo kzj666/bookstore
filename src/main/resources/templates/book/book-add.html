@@ -67,56 +67,6 @@
                     </select>
                 </div>
             </div>
-            <!--<div class="layui-form-item">-->
-                <!--<label for="username" class="layui-form-label">-->
-                    <!--<span class="x-red">*</span>支付方式</label>-->
-                <!--<div class="layui-input-inline">-->
-                    <!--<select name="contrller">-->
-                        <!--<option>支付方式</option>-->
-                        <!--<option>支付宝</option>-->
-                        <!--<option>微信</option>-->
-                        <!--<option>货到付款</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="layui-form-item">-->
-                <!--<label for="L_email" class="layui-form-label">-->
-                    <!--<span class="x-red">*</span>发票抬头</label>-->
-                <!--<div class="layui-input-inline">-->
-                    <!--<input type="text" id="L_email" name="email" required="" lay-verify="email" autocomplete="off"-->
-                           <!--class="layui-input"></div>-->
-                <!--<div class="layui-form-mid layui-word-aux">-->
-                    <!--<span class="x-red">*</span></div>-->
-            <!--</div>-->
-            <!--<div class="layui-form-item layui-form-text">-->
-                <!--<label for="desc" class="layui-form-label">商品增加</label>-->
-                <!--<div class="layui-input-block">-->
-                    <!--<table class="layui-table">-->
-                        <!--<tbody>-->
-                        <!--<tr>-->
-                            <!--<td>haier海尔 BC-93TMPF 93升单门冰箱</td>-->
-                            <!--<td>0.01</td>-->
-                            <!--<td>984</td>-->
-                            <!--<td>1</td>-->
-                            <!--<td>删除</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                            <!--<td>haier海尔 BC-93TMPF 93升单门冰箱</td>-->
-                            <!--<td>0.01</td>-->
-                            <!--<td>984</td>-->
-                            <!--<td>1</td>-->
-                            <!--<td>删除</td>-->
-                        <!--</tr>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="layui-form-item layui-form-text">-->
-                <!--<label for="desc" class="layui-form-label">描述</label>-->
-                <!--<div class="layui-input-block">-->
-                    <!--<textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="layui-form-item">
                 <label for="add" class="layui-form-label"></label>
                 <button id="add" class="layui-btn" lay-filter="add" lay-submit="">增加</button>
@@ -146,8 +96,7 @@
         });
 
         //监听提交
-        form.on('submit(add)',
-            function (data) {
+        form.on('submit(add)', function (data) {
                 console.log(data);
                 //发异步，把数据提交给php
                 var bookname = data.field.bookname;
@@ -183,6 +132,7 @@
                     });
                 return false;
             });
+
     });</script>
 <script>var _hmt = _hmt || [];
 (function () {

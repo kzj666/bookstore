@@ -29,7 +29,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="username" name="username" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input">
+                           autocomplete="off" class="layui-input" onchange="checkexist()">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>将会成为您唯一的登入名
@@ -110,15 +110,17 @@
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label">
                 </label>
-                <button class="layui-btn" lay-filter="add" lay-submit="">
-                    增加
+                <button id="addbutton" class="layui-btn" lay-filter="add" lay-submit="" onclick="aa()">
+                    添加
                 </button>
+                <<span id="usernametip" class="x-red" style="font-weight: bold;"></span>
+                    <!--<span id="usernametip" class="layui-badge">61728</span>-->
             </div>
         </form>
     </div>
 </div>
-<script>layui.use(['form', 'layer'],
-    function () {
+<script>
+    layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
         var form = layui.form,
             layer = layui.layer;
@@ -138,54 +140,68 @@
             }
         });
 
+
         //监听提交
-        form.on('submit(add)',
-            function (data) {
-                console.log(data);
-                //发异步，把数据提交给php
-                var username = data.field.username;
-                var pass = data.field.pass;
-                var phone = data.field.phone;
-                var email = data.field.email;
-                var sex = data.field.sex;
-                var perm = data.field.perm;
-                var role = data.field.role;
-                var repass = data.field.repass;
-                $.ajax({
-                    type: 'post',
-                    url: "/user/add",
-                    data: {
-                        'username': username,
-                        'password': pass,
-                        'phone': phone,
-                        'email': email,
-                        'sex': sex,
-                        'perm': perm,
-                        'role': role
-                    },
-                    //success没进到里面去，以后再深究
-                    success: function (res) {
-                        if (res > 0) {
-                            console.log("=====================================================================");
-                        }
-                    }
-                });
-
-
-                layer.alert("增加成功", {
-                        icon: 6
-                    },
-                    function () {
-                        //关闭当前frame
-                        xadmin.close();
-
-                        // 可以对父窗口进行刷新
-                        xadmin.father_reload();
-                    });
-                return false;
+        form.on('submit(add)', function (data) {
+            console.log(data);
+            //发异步，把数据提交给php
+            var username = data.field.username;
+            var pass = data.field.pass;
+            var phone = data.field.phone;
+            var email = data.field.email;
+            var sex = data.field.sex;
+            var perm = data.field.perm;
+            var role = data.field.role;
+            var repass = data.field.repass;
+            $.ajax({
+                type: 'post',
+                url: "/user/add",
+                data: {
+                    'username': username,
+                    'password': pass,
+                    'phone': phone,
+                    'email': email,
+                    'sex': sex,
+                    'perm': perm,
+                    'role': role
+                },
+                success: function (res) {
+                    console.log("=====================================================================" + res);
+                }
             });
+            layer.alert("增加成功", {icon: 6}, function () {
+                //关闭当前frame
+                xadmin.close();
+                // 可以对父窗口进行刷新
+                xadmin.father_reload();
+            });
+            return false;
+        });
+    });
 
-    });</script>
+    //监听用户名是否已存在
+    function checkexist() {
+        // 拿到输入框的值
+        var name = document.getElementById('username').value;
+        // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++" + name);
+        $.ajax({
+            url: "/user/checkexist/" + name,
+            type: "GET",
+            success: function (result) {
+                // console.log("--------------------------------------------------" + result);
+                if (result == 'exist') {
+                    $('#usernametip').html("此用户名已存在");
+                    $('#addbutton').attr("disabled","true");
+                } else {
+                    $('#usernametip').html("用户名可用");
+                    $('#addbutton').removeAttr("disabled");
+                }
+            }
+        });
+    }
+
+
+</script>
 <script>var _hmt = _hmt || [];
 (function () {
     var hm = document.createElement("script");

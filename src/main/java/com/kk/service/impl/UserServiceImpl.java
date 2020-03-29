@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
+
     /**
      * 查询出全部记录
      *

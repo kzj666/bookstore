@@ -47,11 +47,8 @@
                     <!--</form>-->
                 </div>
                 <div class="layui-card-header">
-                    <button shiro:hasPermission="A" class="layui-btn layui-btn-danger" onclick="delAll()">
-                        <i class="layui-icon"></i>批量删除
-                    </button>
                     <button shiro:hasPermission="C" class="layui-btn"
-                            onclick="xadmin.open('添加书籍','to-book-add',600,460)">
+                            onclick="xadmin.open('添加书籍','/book/to-book-add',600,460)">
                         <i class="layui-icon"></i>添加
                     </button>
                 </div>
