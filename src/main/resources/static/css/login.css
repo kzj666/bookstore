@@ -6,7 +6,7 @@
 */
 .login-bg {
     /*background: #eeeeee url() 0 0 no-repeat;*/
-    background: url("../images/bg.png") no-repeat center;
+    background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
     background-size: cover;
     overflow: hidden;
 }
